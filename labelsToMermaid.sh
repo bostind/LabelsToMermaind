@@ -36,7 +36,7 @@ fi
 
 echo "" > "$filesubgraph"
 {
-    echo "graph TD"  # 改为 LR 以实现横向排列
+    echo "graph TD"  # 改为 TD 以实现横向排列
 
     declare -A zone_racks   # 用于跟踪每个 zone 和 rack 的 hostname
     declare -A region_zones  # 用于跟踪每个 region 包含的 zone
