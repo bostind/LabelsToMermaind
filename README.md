@@ -7,9 +7,12 @@
 简化的基础架构如下，去掉各种连接线，也符合官方风格（这里rack定义在验证文章专门说明）
 下图也就是这次的目标
 ![alt text](images/image2.png "简化的基础架构")
-# 准备工作
+
 # 环境依赖
 kubectl必须的，还需要jq
+```
+Ubuntu 24.04 LTS
+```
 ``` 
 kubectl version
 Client Version: v1.30.5
@@ -35,7 +38,7 @@ node06     NotReady   <none>   11d   v1.30.5   beta.kubernetes.io/arch=amd64,bet
 
  ```
 # 限制
-节点标签按照官方推荐的region、zone、rack等拓扑层级进行分类,且标签名字固定为topology.kubernetes.io/region、topology.kubernetes.io/zone、topology.kubernetes.io/rack、kubernetes.io/hostname 可以考虑实际情况进行修改，但是没必要...
+节点标签按照官方推荐的region、zone、rack名称并定义拓扑层级进行,所以标签名字固定为topology.kubernetes.io/region、topology.kubernetes.io/zone、topology.kubernetes.io/rack、kubernetes.io/hostname 可以考虑实际情况进行修改，注意保证层级正确
 
 # 步骤
 1、获取所有节点标签
@@ -43,10 +46,10 @@ node06     NotReady   <none>   11d   v1.30.5   beta.kubernetes.io/arch=amd64,bet
 ``` 
 kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{range .metadata.labels}{.}{"="}{.}{" "}{end}{"\n"}{end}' > /tmp/k8s_node_labels_extracted.txt
 ```
-
 详细查看get-labels.sh文件
 
-结果示例
+k8s_node_labels_extracted.txt结果示例
+
 其实这样看也算可以了，但是还不如拓扑图形直观
 ```
 ==========================
@@ -65,7 +68,7 @@ cat /tmp/k8s_node_labels_extracted.txt | jq -R 'split(" ") | {node:.[0], labels:
 ```
 详细查看get-mermaind.sh文件
 
-结果示例
+subgraph.txt 结果示例
 ```
 graph TD
         subgraph cn-wh
@@ -100,9 +103,14 @@ graph TD
             end
 ```
 3、输出到Mermaind
+
 最后把产生的文件在可以预览的Mermaind软件中查看或使用官方的在线工具进行查看，最后效果如下：
+
 思源笔记为例
 ![alt text](images/image.png "Mermaind")
+
+已经可以看到节点分布情况，可以核对是否符合预期，如果有问题可以修改标签再次运行脚本核对
+
 # 二合一文件
 觉得上述步骤麻烦，可以合并成一个文件，详细参考labelsToMermaind.sh文件
 
