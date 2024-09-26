@@ -25,7 +25,7 @@ node06     NotReady   <none>   11d   v1.30.5   beta.kubernetes.io/arch=amd64,bet
 
  ```
 # 限制
-节点标签按照region、zone、rack等拓扑层级进行分类,且标签名字固定为topology.kubernetes.io/region、topology.kubernetes.io/zone、topology.kubernetes.io/rack、kubernetes.io/hostname。
+节点标签按照region、zone、rack等拓扑层级进行分类,且标签名字固定为topology.kubernetes.io/region、topology.kubernetes.io/zone、topology.kubernetes.io/rack、kubernetes.io/hostname 可以考虑实际情况进行修改
 
 # 步骤
 1. 获取所有节点标签
