@@ -90,6 +90,7 @@ graph TD
 
 # 参考
 https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+
 https://github.com/mermaid-js/mermaid
 # 关联
 kubernetes K8S  nodes labels to mermaind
