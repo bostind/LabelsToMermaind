@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 输出文件名
-output_filelabels="k8s_node_labels_extracted.txt"
+filelabels="k8s_node_labels_extracted.txt"
 
 # 检查 kubectl 和 jq 是否存在
 if ! command -v kubectl &> /dev/null || ! command -v jq &> /dev/null; then
@@ -10,7 +10,7 @@ if ! command -v kubectl &> /dev/null || ! command -v jq &> /dev/null; then
 fi
 
 # 清空或创建输出文件
-echo > "$output_filelabels"
+echo > "$filelabels"
 # 获取所有节点的标签并提取需要的字段
 if ! kubectl get nodes -o json | jq -r '.items[] | 
     {name: .metadata.name, 
@@ -19,21 +19,22 @@ if ! kubectl get nodes -o json | jq -r '.items[] |
      rack: .metadata.labels["topology.kubernetes.io/rack"], 
      hostname: .metadata.labels["kubernetes.io/hostname"]} | 
     select(.hostname != null or .zone != null or .rack != null or .region != null) | 
-    "\(.name), \(.region), \(.zone), \(.rack), \(.hostname)"' >> "$output_filelabels"; then
+    "\(.name), \(.region), \(.zone), \(.rack), \(.hostname)"' >> "$filelabels"; then
     echo "Error: Failed to retrieve nodes or process data." >&2
 fi
+# 添加文件结束标记
+    echo "Output labels saved to $filelabels"
 
 # 输出文件名
-output_filesubgraph="subgraph.txt"
-input_file="k8s_node_labels_extracted.txt"
+filesubgraph="subgraph.txt"
 
 # 检查输入文件是否存在
-if [[ ! -f "$input_file" ]]; then
-    echo "错误: 输入文件 $input_file 不存在。" >&2
+if [[ ! -f "$filelabels" ]]; then
+    echo "错误: 输入文件 $filelabels 不存在。" >&2
     exit 1
 fi
 
-echo "" > "$output_filesubgraph"
+echo "" > "$filesubgraph"
 {
     echo "graph TD"  # 改为 LR 以实现横向排列
 
@@ -55,28 +56,28 @@ echo "" > "$output_filesubgraph"
             fi
             region_zones[$region]+="$zone "
         fi
-    done < "$input_filesubgraph"
+    done < "$filelabels"
 
     # 输出合并后的 subgraph
     
     for region in "${!region_zones[@]}"; do
         zones=(${region_zones[$region]})  # 获取该 region 中的所有 zones
         if [[ ${#zones[@]} -gt 0 ]]; then  # 确保 zone 不为空
-            echo "        subgraph $region" >> "$output_file.tmp"  # 创建 region 的 subgraph
+            echo "        subgraph $region" >> "$filesubgraph.tmp"  # 创建 region 的 subgraph
             
             # 输出 zone 名称
             for zone in "${zones[@]}"; do
                 if [[ -z "${output_zones[$zone]}" ]]; then
-                    echo "            $zone" >> "$output_file.tmp"  # 输出 zone 名称
+                    echo "            $zone" >> "$filesubgraph.tmp"  # 输出 zone 名称
                     output_zones[$zone]=1  # 标记为已输出
                 fi
             done
-            echo "        end" >> "$output_file.tmp"  # 结束 region 的 subgraph
+            echo "        end" >> "$filesubgraph.tmp"  # 结束 region 的 subgraph
              # 输出 zone 的 subgraph
             output_zones=()
             for zone in "${zones[@]}"; do
                 if [[ -z "${output_zones[$zone]}" ]]; then
-                    echo "            subgraph $zone" >> "$output_file.tmp"  # 创建 zone 的 subgraph
+                    echo "            subgraph $zone" >> "$filesubgraph.tmp"  # 创建 zone 的 subgraph
                     output_zones[$zone]=1  # 标记为已输出
                     
                     # 输出该 zone 下的 racks 和 hostnames
@@ -84,21 +85,21 @@ echo "" > "$output_filesubgraph"
                         if [[ $rack_key == $zone:* ]]; then
                             rack="${rack_key#*:}"  # 提取 rack 名
                             if [[ -z "${output_racks[$rack]}" ]]; then
-                                echo "                subgraph $rack" >> "$output_file.tmp"  # 创建 rack 的 subgraph
-                                echo -e "${zone_racks[$rack_key]}" >> "$output_file.tmp"  # 输出所有 hostname
-                                echo "                end" >> "$output_file.tmp"  # 结束 rack 的 subgraph
+                                echo "                subgraph $rack" >> "$filesubgraph.tmp"  # 创建 rack 的 subgraph
+                                echo -e "${zone_racks[$rack_key]}" >> "$filesubgraph.tmp"  # 输出所有 hostname
+                                echo "                end" >> "$filesubgraph.tmp"  # 结束 rack 的 subgraph
                                 output_racks[$rack]=1  # 标记为已输出
                             fi
                         fi
                     done
                     
-                    echo "            end" >> "$output_file.tmp"  # 结束 zone 的 subgraph
+                    echo "            end" >> "$filesubgraph.tmp"  # 结束 zone 的 subgraph
                 fi
             done
             
             
         fi
     done
-} > "$output_file.tmp" && mv "$output_file.tmp" "$output_filesubgraph"
+} > "$filesubgraph.tmp" && mv "$filesubgraph.tmp" "$filesubgraph"
 # 添加文件结束标记
-    echo "Output saved to $output_filesubgraph"
+    echo "Output subgraph saved to $filesubgraph"

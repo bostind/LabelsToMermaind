@@ -85,4 +85,4 @@ graph TD
 ![alt text](images/image.png "Mermaind")
 
 # 二合一文件
-详细参考LabelsToMermaind.sh文件
+详细参考labelsToMermaind.sh文件
