@@ -88,6 +88,9 @@ graph TD
 # 二合一文件
 详细参考labelsToMermaind.sh文件
 
+# 参考
+https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+https://github.com/mermaid-js/mermaid
 # 关联
 kubernetes K8S  nodes labels to mermaind
 基础架构  拓扑图  节点标签
