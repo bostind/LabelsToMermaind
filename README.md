@@ -1,5 +1,3 @@
-# LabelsToMermaind
-kubernetes nodes  labels to Mermaind
 # 背景
 在验证K8S 调度器中的拓扑分布约束（Topology Spread Constraints）节点分布情况时，可以根据主机标签快速转换拓扑图方便核对
 # 环境
@@ -26,7 +24,10 @@ node05     NotReady   <none>   11d   v1.30.5   beta.kubernetes.io/arch=amd64,bet
 node06     NotReady   <none>   11d   v1.30.5   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node06,kubernetes.io/os=linux,topology.kubernetes.io/rack=example-rack,topology.kubernetes.io/region=example-region,topology.kubernetes.io/zone=example-zone
 
  ```
-# 过程
+# 限制
+节点标签按照region、zone、rack等拓扑层级进行分类,且标签名字固定为topology.kubernetes.io/region、topology.kubernetes.io/zone、topology.kubernetes.io/rack、kubernetes.io/hostname。
+
+# 步骤
 1. 获取所有节点标签
 ``` kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{range .metadata.labels}{.}{"="}{.}{" "}{end}{"\n"}{end}' > /tmp/k8s_node_labels_extracted.txt```
 
@@ -86,3 +87,7 @@ graph TD
 
 # 二合一文件
 详细参考labelsToMermaind.sh文件
+
+# 关联
+kubernetes K8S  nodes labels to mermaind
+基础架构  拓扑图  节点标签
