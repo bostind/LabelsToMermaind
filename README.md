@@ -28,9 +28,9 @@ node06     NotReady   <none>   11d   v1.30.5   beta.kubernetes.io/arch=amd64,bet
  ```
 # 过程
 1. 获取所有节点标签
-``` kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{range .metadata.labels}{.}{"="}{.}{" "}{end}{"\n"}{end}' > /tmp/k8s_node_labels_extracted.txt
-```
-详细get-labels.sh文件
+``` kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{range .metadata.labels}{.}{"="}{.}{" "}{end}{"\n"}{end}' > /tmp/k8s_node_labels_extracted.txt```
+
+详细查看get-labels.sh文件
 
 结果示例
 ```
