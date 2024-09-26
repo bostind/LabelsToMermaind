@@ -17,7 +17,8 @@ jq-1.7
 1. 获取所有节点标签
 ``` kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{range .metadata.labels}{.}{"="}{.}{" "}{end}{"\n"}{end}' > /tmp/k8s_node_labels_extracted.txt```
 详细get-labels.sh文件
-示例文件
+
+结果示例
 ```
 ==========================
 master01, cn-wh, cn-wh-01, cn-wh-01-01, master01
@@ -31,7 +32,8 @@ node06, cn-wh, cn-wh-02, cn-wh-02-03, node06
 2. 转换为Mermaind格式
 ``` cat /tmp/k8s_node_labels_extracted.txt | jq -R 'split(" ") | {node:.[0], labels: .[1:] | map({key: .[0], value: .[1]})}' > /tmp/subgraph.txt```
 详细labelsTomermaind.sh
-示例文件
+
+结果示例
 ```
 graph TD
         subgraph cn-wh
