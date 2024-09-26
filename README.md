@@ -50,7 +50,6 @@ kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{range .met
 
 k8s_node_labels_extracted.txt结果示例
 
-其实这样看也算可以了，但是还不如拓扑图形直观
 ```
 ==========================
 master01, cn-wh, cn-wh-01, cn-wh-01-01, master01
@@ -61,7 +60,10 @@ node04, cn-wh, cn-wh-02, cn-wh-02-01, node04
 node05, cn-wh, cn-wh-02, cn-wh-02-02, node05
 node06, cn-wh, cn-wh-02, cn-wh-02-03, node06
 ```
+其实这样看也算可以了，但是还不如拓扑图形直观
+
 2、转换为Mermaind格式
+
 下面开始转换为Mermaind格式
 ``` 
 cat /tmp/k8s_node_labels_extracted.txt | jq -R 'split(" ") | {node:.[0], labels: .[1:] | map({key: .[0], value: .[1]})}' > /tmp/subgraph.txt 
