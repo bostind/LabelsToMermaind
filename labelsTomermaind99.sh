@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # 输出文件名
-output_file="/home/bob/subgraph.txt"
-input_file="/home/bob/k8s_node_labels_extracted.txt"
+output_file="subgraph.txt"
+input_file="k8s_node_labels_extracted.txt"
 
 # 检查输入文件是否存在
 if [[ ! -f "$input_file" ]]; then
