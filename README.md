@@ -45,7 +45,7 @@ node06, cn-wh, cn-wh-02, cn-wh-02-03, node06
 ```
 2. 转换为Mermaind格式
 ``` cat /tmp/k8s_node_labels_extracted.txt | jq -R 'split(" ") | {node:.[0], labels: .[1:] | map({key: .[0], value: .[1]})}' > /tmp/subgraph.txt ```
-详细labelsTomermaind.sh
+详细get-mermaind.sh文件
 
 结果示例
 ```
@@ -83,3 +83,6 @@ graph TD
 ```
 4. 输出到Mermaind
 ![alt text](images/image.png "Mermaind")
+
+# 二合一文件
+详细参考LabelsToMermaind.sh文件
