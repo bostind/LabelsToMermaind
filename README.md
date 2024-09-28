@@ -109,7 +109,7 @@ graph TD
 最后把产生的文件在可以预览的Mermaind软件中查看或使用官方的在线工具进行查看，最后效果如下：
 
 思源笔记为例
-![alt text](images/image.png "Mermaind")
+![alt text](images/image3.png "Mermaind")
 
 已经可以看到节点分布情况，可以核对是否符合预期，如果有问题可以修改标签再次运行脚本核对
 
