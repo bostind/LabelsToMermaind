@@ -14,14 +14,15 @@ echo > "$filelabels"
 # 获取所有节点的标签并提取需要的字段
 if ! kubectl get nodes -o json | jq -r '.items[] | 
     {name: .metadata.name, 
-     region: .metadata.labels["topology.kubernetes.io/region"], 
-     zone: .metadata.labels["topology.kubernetes.io/zone"], 
-     rack: .metadata.labels["topology.kubernetes.io/rack"], 
-     hostname: .metadata.labels["kubernetes.io/hostname"]} | 
+     region: .metadata.labels["region"], 
+     zone: .metadata.labels["zone"], 
+     rack: .metadata.labels["rack"], 
+     hostname: .metadata.labels["hostname"]} | 
     select(.hostname != null or .zone != null or .rack != null or .region != null) | 
     "\(.name)  region=\(.region) zone=\(.zone)  rack=\(.rack)  hostname=\(.hostname)"' >> "$filelabels"; then
     echo "Error: Failed to retrieve nodes or process data." >&2
 fi
+sed -i '/^$/d' "$filelabels"
 # 添加文件结束标记
     echo "Output labels saved to $filelabels"
 

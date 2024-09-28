@@ -1,8 +1,7 @@
-
-master01  region=cn-wh  zone=cn-wh-01  rack=cn-wh-01-01  hostname=master01
-node01  region=cn-wh  zone=cn-wh-01  rack=cn-wh-01-01  hostname=node01
-node02  region=cn-wh  zone=cn-wh-01  rack=cn-wh-01-02  hostname=node02
-node03  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-01  hostname=node03
-node04  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-01  hostname=node04
-node05  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-02  hostname=node05
-node06  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-03  hostname=node06
+master01  region=cn-wh zone=cn-wh-01  rack=cn-wh-01-01  hostname=master01
+node01  region=cn-wh zone=cn-wh-01  rack=cn-wh-01-01  hostname=node01
+node02  region=cn-wh zone=cn-wh-01  rack=cn-wh-01-02  hostname=node02
+node03  region=cn-wh zone=cn-wh-02  rack=cn-wh-02-01  hostname=node03
+node04  region=cn-wh zone=cn-wh-02  rack=cn-wh-02-01  hostname=node04
+node05  region=cn-wh zone=cn-wh-02  rack=cn-wh-02-02  hostname=node05
+node06  region=cn-wh zone=cn-wh-02  rack=cn-wh-02-03  hostname=node06
