@@ -19,7 +19,7 @@ if ! kubectl get nodes -o json | jq -r '.items[] |
      rack: .metadata.labels["topology.kubernetes.io/rack"], 
      hostname: .metadata.labels["kubernetes.io/hostname"]} | 
     select(.hostname != null or .zone != null or .rack != null or .region != null) | 
-    "\(.name), \(.region), \(.zone), \(.rack), \(.hostname)"' >> "$filelabels"; then
+    "\(.name)  region=\(.region) zone=\(.zone)  rack=\(.rack)  hostname=\(.hostname)"' >> "$filelabels"; then
     echo "Error: Failed to retrieve nodes or process data." >&2
 fi
 # 添加文件结束标记
@@ -101,5 +101,6 @@ echo "" > "$filesubgraph"
         fi
     done
 } > "$filesubgraph.tmp" && mv "$filesubgraph.tmp" "$filesubgraph"
+sed -i 's/=/:/g' "$filesubgraph"
 # 添加文件结束标记
     echo "Output subgraph saved to $filesubgraph"

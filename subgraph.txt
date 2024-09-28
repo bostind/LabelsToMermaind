@@ -1,31 +1,31 @@
 graph TD
-        subgraph cn-wh
-            cn-wh-01
-            cn-wh-02
+        subgraph region:cn-wh
+            zone:cn-wh-01
+            zone:cn-wh-02
         end
-            subgraph cn-wh-01
-                subgraph cn-wh-01-01
-                master01
-                node01
-                
+            subgraph zone:cn-wh-01
+                subgraph rack:cn-wh-01-01
+hostname:master01
+hostname:node01
+
                 end
-                subgraph cn-wh-01-02
-               node02
+                subgraph rack:cn-wh-01-02
+hostname:node02
 
                 end
             end
-            subgraph cn-wh-02
-                subgraph cn-wh-02-02
-                node05
+            subgraph zone:cn-wh-02
+                subgraph rack:cn-wh-02-01
+hostname:node03
+hostname:node04
 
                 end
-                subgraph cn-wh-02-03
-                node06
+                subgraph rack:cn-wh-02-03
+hostname:node06
 
                 end
-                subgraph cn-wh-02-01
-                node03
-                node04
+                subgraph rack:cn-wh-02-02
+hostname:node05
 
                 end
             end

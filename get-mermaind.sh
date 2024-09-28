@@ -77,3 +77,4 @@ echo "" > "$output_file"
         fi
     done
 } > "$output_file.tmp" && mv "$output_file.tmp" "$output_file"
+sed -i 's/=/:/g' "$output_file"
