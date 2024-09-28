@@ -1,8 +1,8 @@
-==========================
-master01, cn-wh, cn-wh-01, cn-wh-01-01, master01
-node01, cn-wh, cn-wh-01, cn-wh-01-01, node01
-node02, cn-wh, cn-wh-01, cn-wh-01-02, node02
-node03, cn-wh, cn-wh-02, cn-wh-02-01, node03
-node04, cn-wh, cn-wh-02, cn-wh-02-01, node04
-node05, cn-wh, cn-wh-02, cn-wh-02-02, node05
-node06, cn-wh, cn-wh-02, cn-wh-02-03, node06
+
+master01  region=cn-wh  zone=cn-wh-01  rack=cn-wh-01-01  hostname=master01
+node01  region=cn-wh  zone=cn-wh-01  rack=cn-wh-01-01  hostname=node01
+node02  region=cn-wh  zone=cn-wh-01  rack=cn-wh-01-02  hostname=node02
+node03  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-01  hostname=node03
+node04  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-01  hostname=node04
+node05  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-02  hostname=node05
+node06  region=cn-wh  zone=cn-wh-02  rack=cn-wh-02-03  hostname=node06
