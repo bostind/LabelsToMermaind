@@ -1,0 +1,7 @@
+master01, topology.kubernetes.io/region=cn-wh, topology.kubernetes.io/zone=cn-wh-01, topology.kubernetes.io/rack=cn-wh-01-01, kubernetes.io/hostname=master01
+node01, topology.kubernetes.io/region=cn-wh, topology.kubernetes.io/zone=cn-wh-01, topology.kubernetes.io/rack=cn-wh-01-01, kubernetes.io/hostname=node01
+node02, topology.kubernetes.io/region=cn-wh, topology.kubernetes.io/zone=cn-wh-01, topology.kubernetes.io/rack=cn-wh-01-02, kubernetes.io/hostname=node02
+node03, topology.kubernetes.io/region=cn-wh, topology.kubernetes.io/zone=cn-wh-02, topology.kubernetes.io/rack=cn-wh-02-01, kubernetes.io/hostname=node03
+node04, topology.kubernetes.io/region=cn-wh, topology.kubernetes.io/zone=cn-wh-02, topology.kubernetes.io/rack=cn-wh-02-01, kubernetes.io/hostname=node04
+node05, topology.kubernetes.io/region=cn-wh, topology.kubernetes.io/zone=cn-wh-02, topology.kubernetes.io/rack=cn-wh-02-02, kubernetes.io/hostname=node05
+node06, topology.kubernetes.io/region=cn-wh, topology.kubernetes.io/zone=cn-wh-02, topology.kubernetes.io/rack=cn-wh-02-03, kubernetes.io/hostname=node06

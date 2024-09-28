@@ -1,0 +1,31 @@
+graph TD
+        subgraph cn-wh
+            cn-wh-01
+            cn-wh-02
+        end
+            subgraph cn-wh-01
+                subgraph cn-wh-01-01
+                master01
+                node01
+                
+                end
+                subgraph cn-wh-01-02
+               node02
+
+                end
+            end
+            subgraph cn-wh-02
+                subgraph cn-wh-02-02
+                node05
+
+                end
+                subgraph cn-wh-02-03
+                node06
+
+                end
+                subgraph cn-wh-02-01
+                node03
+                node04
+
+                end
+            end
