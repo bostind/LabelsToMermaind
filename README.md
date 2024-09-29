@@ -126,7 +126,7 @@ node04     NotReady   <none>   14d   v1.30.5   beta.kubernetes.io/arch=amd64,bet
 node05     NotReady   <none>   14d   v1.30.5   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,hostname=node05,kubernetes.io/arch=amd64,kubernetes.io/hostname=node05,kubernetes.io/os=linux,rack=cn-wh-02-02,region=cn-wh,zone=cn-wh-02
 node06     NotReady   <none>   14d   v1.30.5   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,hostname=node06,kubernetes.io/arch=amd64,kubernetes.io/hostname=node06,kubernetes.io/os=linux,rack=cn-wh-02-04,region=cn-wh,zone=cn-wh-02
 ```
-看难看了，继续往下
+太难看了，继续往下
 
 
 ## 根据节点标签转换架构图
